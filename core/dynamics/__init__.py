@@ -2,6 +2,9 @@ from .affine_dynamics import AffineDynamics
 from .affine_quad_clf import AffineQuadCLF
 from .dynamics import Dynamics
 from .fb_lin_dynamics import FBLinDynamics
+from .learned_affine_dynamics import LearnedAffineDynamics
+from .learned_dynamics import LearnedDynamics
+from .learned_fb_lin_dynamics import LearnedFBLinDynamics
 from .linear_system_dynamics import LinearSystemDynamics
 from .linearizable_dynamics import LinearizableDynamics
 from .pd_dynamics import PDDynamics
