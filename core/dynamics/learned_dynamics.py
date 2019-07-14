@@ -36,12 +36,12 @@ class LearnedDynamics(Dynamics):
 
         return inputs, residuals
 
-    def init_data(self, d_in, d_out):
+    def init_data(d_in, d_out):
         return [zeros((0, d_in)), zeros((0, d_out))]
 
-    def aggregate_data(self, old_data, new_data):
-        return [concatenate(old, new) for old, new in zip(old_data, new_data)]
+    def aggregate_data(old_data, new_data):
+        return [concatenate([old, new]) for old, new in zip(old_data, new_data)]
 
-    def fit(self, data, batch_size=1, num_epochs=1, validation_split=0):
+    def fit(self, data, batch_size=1, num_epochs=1, validation_data=None):
         inputs, residuals = data
-        self.res_model.fit(inputs, residuals, batch_size, num_epochs, validation_split)
+        self.res_model.fit(inputs, residuals, batch_size, num_epochs, validation_data)

@@ -2,6 +2,7 @@ from numpy import array, concatenate, zeros
 
 from .. import differentiate
 from .affine_dynamics import AffineDynamics
+from .learned_dynamics import LearnedDynamics
 
 class LearnedAffineDynamics(AffineDynamics):
     def __init__(self, affine_dynamics, res_aff_model):
@@ -38,15 +39,19 @@ class LearnedAffineDynamics(AffineDynamics):
 
         drift_inputs = drift_inputs[half_window:-half_window]
         act_inputs = act_inputs[half_window:-half_window]
+        us = us[half_window:-half_window]
         rep_dot_noms = rep_dot_noms[half_window:-half_window]
 
         residuals = rep_dots - rep_dot_noms
 
         return drift_inputs, act_inputs, us, residuals
 
-    def init_data(self, d_drift_in, d_act_in, m, d_out):
+    def init_data(d_drift_in, d_act_in, m, d_out):
         return [zeros((0, d_drift_in)), zeros((0, d_act_in)), zeros((0, m)), zeros((0, d_out))]
 
-    def fit(self, data, batch_size=1, num_epochs=1, validation_split=0):
+    def aggregate_data(old_data, new_data):
+        return LearnedDynamics.aggregate_data(old_data, new_data)
+
+    def fit(self, data, batch_size=1, num_epochs=1, validation_data=None):
         drift_inputs, act_inputs, us, residuals = data
-        self.res_model.fit(drift_inputs, act_inputs, us, residuals, batch_size, num_epochs, validation_split)
+        self.res_model.fit(drift_inputs, act_inputs, us, residuals, batch_size, num_epochs, validation_data)

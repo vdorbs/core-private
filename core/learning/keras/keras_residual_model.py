@@ -22,4 +22,4 @@ class KerasResidualModel(ResidualModel):
 
     def fit(self, inputs, residuals, batch_size=1, num_epochs=1, validation_split=0):
         inputs, residuals = self.shuffle(inputs, residuals)
-        self.model.fit(inputs, residuals, batch_size=batch_size, epochs=num_epochs, validation_split=validation_split)
+        self.model.fit(inputs, residuals, batch_size=batch_size, epochs=num_epochs, validation_data=validation_data)

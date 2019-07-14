@@ -5,5 +5,5 @@ class ResidualAffineModel:
     def eval_act(self, act_input):
         pass
 
-    def fit(self, drift_inputs, act_inputs, us, residuals, batch_size=1, num_epochs=1, validation_split=0):
+    def fit(self, drift_inputs, act_inputs, us, residuals, batch_size=1, num_epochs=1, validation_data=None):
         pass
