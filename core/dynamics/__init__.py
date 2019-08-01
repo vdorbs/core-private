@@ -1,6 +1,7 @@
 from .affine_dynamics import AffineDynamics
 from .affine_quad_clf import AffineQuadCLF
 from .configuration_dynamics import ConfigurationDynamics
+from .configuration_trajectory_dynamics import ConfigurationTrajectoryDynamics
 from .dynamics import Dynamics
 from .fb_lin_dynamics import FBLinDynamics
 from .fully_actuated_robotic_dynamics import FullyActuatedRoboticDynamics
